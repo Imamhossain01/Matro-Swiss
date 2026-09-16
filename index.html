@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Matro Swiss — Private Banking</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,340;9..144,440;9..144,560&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- Grain / texture overlay -->
+<div class="grain"></div>
+
+<!-- ============ AUTH ============ -->
+<section id="view-auth" class="auth">
+  <div class="auth-side">
+    <div class="auth-side-inner">
+      <div class="brand-mark">
+        <span class="brand-glyph">M</span>
+        <span class="brand-word">Matro Swiss</span>
+      </div>
+      <p class="auth-tagline">Private banking, engineered with Swiss precision — held for Bangladesh.</p>
+      <div class="auth-quote">
+        <p>“ফোর্থ জেনারেশন ব্যাংকিং, জুরিখের নির্ভুলতায়।”</p>
+        <span>Trust No. 04 — Est. Zürich, serving Dhaka</span>
+      </div>
+    </div>
+    <div class="auth-side-footer">Member protection up to ৳20,00,000 · Regulated correspondent of Bangladesh Bank</div>
+  </div>
+
+  <div class="auth-form-wrap">
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab is-active" data-tab="login">Sign in</button>
+        <button class="auth-tab" data-tab="register">Open an account</button>
+      </div>
+
+      <!-- LOGIN -->
+      <form id="form-login" class="auth-form is-active" autocomplete="off">
+        <label class="field">
+          <span>Account number</span>
+          <input type="text" id="login-account" placeholder="1000 234 567" required>
+        </label>
+        <label class="field">
+          <span>PIN</span>
+          <input type="password" id="login-pin" placeholder="••••" inputmode="numeric" maxlength="6" required>
+        </label>
+        <p class="field-error" id="login-error"></p>
+        <button type="submit" class="btn btn-primary btn-block sound-click">Sign in securely</button>
+        <button type="button" class="btn btn-ghost btn-block sound-click" id="btn-demo">Use demo vault</button>
+      </form>
+
+      <!-- REGISTER -->
+      <form id="form-register" class="auth-form" autocomplete="off">
+        <label class="field">
+          <span>Full name</span>
+          <input type="text" id="reg-name" placeholder="e.g. Farhana Islam" required>
+        </label>
+        <label class="field">
+          <span>Mobile number</span>
+          <input type="tel" id="reg-mobile" placeholder="01XXXXXXXXX" required>
+        </label>
+        <label class="field">
+          <span>Choose a PIN</span>
+          <input type="password" id="reg-pin" placeholder="4–6 digits" inputmode="numeric" maxlength="6" required>
+        </label>
+        <label class="field">
+          <span>Opening deposit (৳)</span>
+          <input type="number" id="reg-deposit" placeholder="10000" min="0" required>
+        </label>
+        <p class="field-error" id="register-error"></p>
+        <button type="submit" class="btn btn-primary btn-block sound-click">Create my vault</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ============ APP SHELL ============ -->
+<div id="app" class="app hidden">
+
+  <aside class="sidebar">
+    <div class="brand-mark brand-mark--sm">
+      <span class="brand-glyph">M</span>
+      <span class="brand-word">Matro Swiss</span>
+    </div>
+
+    <nav class="nav">
+      <button class="nav-item is-active sound-click" data-view="dashboard">
+        <svg viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5M5.5 10v9h13v-9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Dashboard</span>
+      </button>
+      <button class="nav-item sound-click" data-view="accounts">
+        <svg viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="13" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M3.5 10.5h17M8 15h4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span>Accounts</span>
+      </button>
+      <button class="nav-item sound-click" data-view="transfer">
+        <svg viewBox="0 0 24 24"><path d="M4 8h13m0 0-4-4m4 4-4 4M20 16H7m0 0 4 4m-4-4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>Transfer</span>
+      </button>
+      <button class="nav-item sound-click" data-view="history">
+        <svg viewBox="0 0 24 24"><path d="M4 5.5h16M4 12h16M4 18.5h10" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <span>History</span>
+      </button>
+      <button class="nav-item sound-click" data-view="cards">
+        <svg viewBox="0 0 24 24"><rect x="2.8" y="5.5" width="18.4" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M2.8 9.8h18.4" stroke="currentColor" stroke-width="1.6"/></svg>
+        <span>Cards</span>
+      </button>
+      <button class="nav-item sound-click" data-view="bills">
+        <svg viewBox="0 0 24 24"><path d="M6 3.5h12v17l-2.5-1.6L13 20.5l-2.5-1.6L8 20.5l-2-1.5v-15.5Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M8.5 8h7M8.5 11.5h7M8.5 15h4.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        <span>Bill Pay</span>
+      </button>
+    </nav>
+
+    <button class="logout sound-click" id="btn-logout">
+      <svg viewBox="0 0 24 24"><path d="M9 4H5.5a1.5 1.5 0 0 0-1.5 1.5v13A1.5 1.5 0 0 0 5.5 20H9M15.5 16l4-4-4-4M19 12H9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Sign out</span>
+    </button>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="mobile-nav-toggle sound-click" id="btn-mobile-nav" aria-label="Menu">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <div class="topbar-title">
+        <h1 id="view-title">Dashboard</h1>
+        <p id="view-subtitle">Good to see you again</p>
+      </div>
+      <div class="topbar-user">
+        <div class="topbar-user-info">
+          <strong id="topbar-name">—</strong>
+          <span id="topbar-account">—</span>
+        </div>
+        <div class="avatar" id="topbar-avatar">MS</div>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <!-- ===== DASHBOARD ===== -->
+      <section class="view is-active" id="view-dashboard">
+        <div class="dash-grid">
+
+          <div class="panel balance-panel">
+            <div class="panel-label">Total relationship balance</div>
+            <div class="balance-row">
+              <div class="balance-figure" id="dash-total-balance">৳ 0.00</div>
+              <button class="eye-toggle sound-click" id="btn-toggle-balance" aria-label="Toggle balance visibility">
+                <svg viewBox="0 0 24 24" id="eye-icon"><path d="M2 12s3.8-6.5 10-6.5S22 12 22 12s-3.8 6.5-10 6.5S2 12 2 12Z" fill="none" stroke="currentColor" stroke-width="1.6"/><circle cx="12" cy="12" r="2.6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+              </button>
+            </div>
+            <div class="balance-split">
+              <div><span>Savings</span><strong id="dash-savings">৳ 0.00</strong></div>
+              <div class="split-divider"></div>
+              <div><span>Checking</span><strong id="dash-checking">৳ 0.00</strong></div>
+            </div>
+            <div class="trend-line">
+              <svg viewBox="0 0 260 46" preserveAspectRatio="none"><polyline points="0,34 30,30 60,36 90,20 120,26 150,10 180,18 210,6 240,14 260,4" fill="none" stroke="#c41e3a" stroke-width="1.6"/></svg>
+              <span class="trend-tag">+ this quarter</span>
+            </div>
+          </div>
+
+          <div class="panel card-panel">
+            <div class="matro-card" id="matro-card">
+              <div class="matro-card-face matro-card-front">
+                <div class="matro-card-top">
+                  <span class="matro-card-brand">MATRO SWISS</span>
+                  <span class="matro-card-tier">BLACK</span>
+                </div>
+                <div class="chip">
+                  <svg viewBox="0 0 40 30"><rect x="0.5" y="0.5" width="39" height="29" rx="5" fill="none" stroke="rgba(255,255,255,.55)"/><path d="M13 0v30M27 0v30M0 10h40M0 20h40" stroke="rgba(255,255,255,.35)" stroke-width="0.8"/></svg>
+                </div>
+                <div class="matro-card-number" id="card-number">•••• •••• •••• ••••</div>
+                <div class="matro-card-bottom">
+                  <div>
+                    <span class="matro-card-caption">Card holder</span>
+                    <strong id="card-name">—</strong>
+                  </div>
+                  <div>
+                    <span class="matro-card-caption">Valid thru</span>
+                    <strong id="card-expiry">—</strong>
+                  </div>
+                </div>
+              </div>
+              <div class="matro-card-face matro-card-back">
+                <div class="magnetic-stripe"></div>
+                <div class="cvv-row">
+                  <div class="signature-strip"></div>
+                  <div class="cvv-box" id="card-cvv">•••</div>
+                </div>
+                <p class="back-note">This is your Matro Swiss debit instrument. Tap the card to flip back.</p>
+              </div>
+            </div>
+            <p class="card-hint">Tap the card to reveal security code</p>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h3>Quick access</h3>
+          </div>
+          <div class="quick-grid">
+            <button class="quick-tile sound-click" data-goto="transfer">
+              <svg viewBox="0 0 24 24"><path d="M4 8h13m0 0-4-4m4 4-4 4M20 16H7m0 0 4 4m-4-4 4-4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              <span>Transfer</span>
+            </button>
+            <button class="quick-tile sound-click" data-goto="bills">
+              <svg viewBox="0 0 24 24"><path d="M6 3.5h12v17l-2.5-1.6L13 20.5l-2.5-1.6L8 20.5l-2-1.5v-15.5Z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+              <span>Pay a bill</span>
+            </button>
+            <button class="quick-tile sound-click" data-goto="cards">
+              <svg viewBox="0 0 24 24"><rect x="2.8" y="5.5" width="18.4" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M2.8 9.8h18.4" stroke="currentColor" stroke-width="1.5"/></svg>
+              <span>Manage cards</span>
+            </button>
+            <button class="quick-tile sound-click" data-goto="history">
+              <svg viewBox="0 0 24 24"><path d="M4 5.5h16M4 12h16M4 18.5h10" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Statements</span>
+            </button>
+            <button class="quick-tile sound-click" data-goto="accounts">
+              <svg viewBox="0 0 24 24"><rect x="3.5" y="6" width="17" height="13" rx="1.4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M3.5 10.5h17M8 15h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Accounts</span>
+            </button>
+            <button class="quick-tile sound-click" id="quick-mobile-recharge">
+              <svg viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="1.6" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 19h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span>Mobile top-up</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-heading">
+            <h3>Recent activity</h3>
+            <button class="link-btn sound-click" data-goto="history">View all</button>
+          </div>
+          <div class="tx-list" id="dash-recent-tx"></div>
+        </div>
+      </section>
+
+      <!-- ===== ACCOUNTS ===== -->
+      <section class="view" id="view-accounts">
+        <div class="panel">
+          <div class="panel-heading"><h3>Account overview</h3></div>
+          <div class="acc-grid">
+            <div class="acc-card">
+              <span class="acc-label">Savings account</span>
+              <strong class="acc-figure" id="acc-savings">৳ 0.00</strong>
+              <span class="acc-sub">•••• 4471 &nbsp;·&nbsp; 3.25% p.a.</span>
+            </div>
+            <div class="acc-card">
+              <span class="acc-label">Checking account</span>
+              <strong class="acc-figure" id="acc-checking">৳ 0.00</strong>
+              <span class="acc-sub">•••• 2210 &nbsp;·&nbsp; Everyday spending</span>
+            </div>
+            <div class="acc-card acc-card--total">
+              <span class="acc-label">Total assets</span>
+              <strong class="acc-figure" id="acc-total">৳ 0.00</strong>
+              <span class="acc-sub">Across all Matro Swiss holdings</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-heading"><h3>Allocation</h3></div>
+          <div class="allocation">
+            <div class="allocation-bar">
+              <div class="allocation-fill allocation-fill--savings" id="alloc-savings"></div>
+              <div class="allocation-fill allocation-fill--checking" id="alloc-checking"></div>
+            </div>
+            <div class="allocation-legend">
+              <span><i class="dot dot--red"></i>Savings <b id="alloc-savings-pct">0%</b></span>
+              <span><i class="dot dot--charcoal"></i>Checking <b id="alloc-checking-pct">0%</b></span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== TRANSFER ===== -->
+      <section class="view" id="view-transfer">
+        <div class="transfer-grid">
+          <div class="panel">
+            <div class="panel-heading"><h3>Send money</h3></div>
+            <form id="form-transfer" class="transfer-form">
+              <label class="field">
+                <span>From</span>
+                <select id="tr-from">
+                  <option value="checking">Checking · •••• 2210</option>
+                  <option value="savings">Savings · •••• 4471</option>
+                </select>
+              </label>
+              <label class="field">
+                <span>Recipient bank / wallet</span>
+                <select id="tr-bank" required>
+                  <option value="" disabled selected>Select destination</option>
+                  <optgroup label="Banks">
+                    <option value="EBL">Eastern Bank Limited (EBL)</option>
+                    <option value="BRAC">BRAC Bank</option>
+                    <option value="CITY">The City Bank</option>
+                    <option value="DBBL">Dutch-Bangla Bank (DBBL)</option>
+                    <option value="ISLAMI">Islami Bank Bangladesh</option>
+                    <option value="SONALI">Sonali Bank</option>
+                  </optgroup>
+                  <optgroup label="Mobile wallets">
+                    <option value="BKASH">bKash</option>
+                    <option value="NAGAD">Nagad</option>
+                  </optgroup>
+                </select>
+              </label>
+              <label class="field">
+                <span>Recipient account / wallet number</span>
+                <input type="text" id="tr-recipient-no" placeholder="e.g. 017XXXXXXXX" required>
+              </label>
+              <label class="field">
+                <span>Recipient name</span>
+                <input type="text" id="tr-recipient-name" placeholder="e.g. Kamal Hossain" required>
+              </label>
+              <label class="field">
+                <span>Amount (৳)</span>
+                <input type="number" id="tr-amount" placeholder="0.00" min="1" step="0.01" required>
+              </label>
+              <label class="field">
+                <span>Note (optional)</span>
+                <input type="text" id="tr-note" placeholder="e.g. Rent, September">
+              </label>
+              <p class="field-error" id="transfer-error"></p>
+              <button type="submit" class="btn btn-primary btn-block sound-click">Review & send</button>
+            </form>
+          </div>
+
+          <div class="panel transfer-preview">
+            <div class="panel-heading"><h3>Recipient preview</h3></div>
+            <div class="route route--static" id="route-visual">
+              <div class="route-node route-node--from">
+                <div class="route-dot"></div>
+                <span id="route-from-label">Matro Swiss</span>
+              </div>
+              <div class="route-line"></div>
+              <div class="route-node route-node--to">
+                <div class="route-dot route-dot--red"></div>
+                <span id="route-to-label">Destination</span>
+              </div>
+            </div>
+            <ul class="route-facts">
+              <li><span>Transfer fee</span><strong>৳ 0.00</strong></li>
+              <li><span>Estimated arrival</span><strong id="route-eta">Instant</strong></li>
+              <li><span>Exchange</span><strong>BDT → BDT</strong></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== HISTORY ===== -->
+      <section class="view" id="view-history">
+        <div class="panel">
+          <div class="panel-heading">
+            <h3>Transaction history</h3>
+            <div class="history-filters">
+              <button class="chip-filter is-active sound-click" data-filter="all">All</button>
+              <button class="chip-filter sound-click" data-filter="deposit">Deposits</button>
+              <button class="chip-filter sound-click" data-filter="transfer">Transfers</button>
+              <button class="chip-filter sound-click" data-filter="withdrawal">Withdrawals</button>
+              <button class="chip-filter sound-click" data-filter="bill">Bills</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table class="ledger">
+              <thead>
+                <tr><th>Date</th><th>Description</th><th>Type</th><th>Status</th><th class="ta-right">Amount</th></tr>
+              </thead>
+              <tbody id="history-body"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CARDS ===== -->
+      <section class="view" id="view-cards">
+        <div class="panel">
+          <div class="panel-heading"><h3>Your cards</h3></div>
+          <div class="cards-list" id="cards-list"></div>
+        </div>
+      </section>
+
+      <!-- ===== BILLS ===== -->
+      <section class="view" id="view-bills">
+        <div class="panel">
+          <div class="panel-heading"><h3>Bill pay & services</h3></div>
+          <div class="bills-grid" id="bills-grid"></div>
+        </div>
+
+        <div class="panel" id="bill-pay-panel" style="display:none;">
+          <div class="panel-heading"><h3 id="bill-pay-title">Pay bill</h3></div>
+          <form id="form-bill" class="transfer-form">
+            <label class="field">
+              <span>Account / meter number</span>
+              <input type="text" id="bill-account" placeholder="Enter account or meter number" required>
+            </label>
+            <label class="field">
+              <span>Amount (৳)</span>
+              <input type="number" id="bill-amount" placeholder="0.00" min="1" step="0.01" required>
+            </label>
+            <p class="field-error" id="bill-error"></p>
+            <div class="bill-actions">
+              <button type="button" class="btn btn-ghost sound-click" id="bill-cancel">Cancel</button>
+              <button type="submit" class="btn btn-primary sound-click">Confirm payment</button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <div class="mobile-nav-scrim" id="mobile-nav-scrim"></div>
+</div>
+
+<!-- ============ TRANSFER MODAL ============ -->
+<div class="overlay" id="transfer-overlay">
+  <div class="overlay-panel transfer-modal">
+    <span class="transfer-modal-eyebrow">Matro Swiss transfer</span>
+
+    <div class="flight-stage" id="flight-stage">
+      <div class="flight-node flight-node--from">
+        <div class="flight-avatar" id="flight-avatar-from">MS</div>
+        <span>You</span>
+      </div>
+      <div class="flight-track" id="flight-track">
+        <div class="flight-token" id="flight-token">৳</div>
+      </div>
+      <div class="flight-node flight-node--to">
+        <div class="flight-avatar flight-avatar--bank" id="flight-avatar-to">—</div>
+        <span id="flight-bank-name">Destination</span>
+      </div>
+    </div>
+
+    <div class="transfer-modal-status" id="transfer-modal-status">
+      <span class="spinner" id="transfer-spinner"></span>
+      <svg class="overlay-check hidden" id="overlay-check" viewBox="0 0 60 60">
+        <circle cx="30" cy="30" r="27" fill="none" stroke="#c41e3a" stroke-width="2"/>
+        <path d="M18 31l8 8 16-18" fill="none" stroke="#c41e3a" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" id="overlay-check-path"/>
+      </svg>
+      <p id="transfer-status-text">Processing your transfer securely…</p>
+    </div>
+
+    <dl class="transfer-summary hidden" id="transfer-summary">
+      <div class="transfer-summary-row"><dt>Sender</dt><dd id="summary-sender">—</dd></div>
+      <div class="transfer-summary-row"><dt>Recipient bank</dt><dd id="summary-bank">—</dd></div>
+      <div class="transfer-summary-row"><dt>Recipient</dt><dd id="summary-recipient">—</dd></div>
+      <div class="transfer-summary-row"><dt>Amount</dt><dd id="summary-amount">—</dd></div>
+      <div class="transfer-summary-row"><dt>Status</dt><dd><span class="badge badge-success" id="summary-status">Success</span></dd></div>
+    </dl>
+
+    <button class="btn btn-primary btn-block sound-click hidden" id="overlay-close">Done</button>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
