@@ -171,13 +171,13 @@ document.addEventListener("click", (e) => {
     return {
       accountNumber: "1000234567",
       pin: "1234",
-      name: "Arif Rahman",
-      mobile: "01711223344",
+      name: "Imam Hossain",
+      mobile: "01867105020",
       savings: 1250430.5,
       checking: 340580.75,
       card: {
         number: "4061550023341009",
-        expiry: "09/29",
+        expiry: "09/32",
         cvv: "482",
         tier: "BLACK",
         frozen: false,
