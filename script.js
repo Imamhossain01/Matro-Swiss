@@ -1,5 +1,5 @@
 /* ============================================================
-   MATRO SWISS — application logic
+   MATRO SWISS — Application logic
    ============================================================ */
 (function () {
   "use strict";
