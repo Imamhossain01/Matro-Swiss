@@ -185,7 +185,7 @@ document.addEventListener("click", (e) => {
       },
       transactions: [
         { id: "t1", date: daysAgo(0.3), desc: "Salary — Bengal Textiles Ltd.", type: "deposit", status: "success", amount: 185000 },
-        { id: "t2", date: daysAgo(1), desc: "Transfer to BRAC Bank · Kamal Hossain", type: "transfer", status: "success", amount: -25000 },
+        { id: "t2", date: daysAgo(1), desc: "Transfer to BRAC Bank · Imam Hossain", type: "transfer", status: "success", amount: -25000 },
         { id: "t3", date: daysAgo(2), desc: "DESCO — Electricity bill", type: "bill", status: "success", amount: -3420 },
         { id: "t4", date: daysAgo(3), desc: "bKash top-up", type: "transfer", status: "success", amount: -5000 },
         { id: "t5", date: daysAgo(5), desc: "ATM withdrawal — Gulshan Ave", type: "withdrawal", status: "success", amount: -10000 },
